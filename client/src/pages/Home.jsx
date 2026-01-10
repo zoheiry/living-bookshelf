@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import Hero from '../components/Hero/Hero';
 import QuoteCard from '../components/QuoteCard/QuoteCard';
 import BookList from '../components/BookList/BookList';
+import styles from './Home.module.scss';
 
 export default function Home() {
     const { books, loading, error } = useBooks();
@@ -42,21 +43,13 @@ export default function Home() {
 
             <QuoteCard books={books} />
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+            <div className={styles.searchContainer}>
                 <input
                     type="text"
                     placeholder="Search title or author..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    style={{
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                        border: '1px solid #1e293b', // Surface color
-                        width: '100%',
-                        maxWidth: '400px',
-                        background: '#1e293b',
-                        color: 'white'
-                    }}
+                    className={styles.searchInput}
                 />
 
                 <div style={{ display: 'flex', gap: '10px' }}>

@@ -1,12 +1,13 @@
-// Dark Mode Palette (BookCase)
-$background-color: #0f172a; // Dark Slate
-$surface-color: #1e293b; // Lighter Slate (Cards)
-$primary-color: #3b82f6; // Bright Blue
-$secondary-color: #cbd5e1; // Slate 300
-$accent-color: #f59e0b; // Amber (for highlights/warnings)
+// Earthy & Nature Palette (Living Bookshelf)
+$background-color: #fdfbf7; // Warm Off-White (Paper-like)
+$surface-color: #f2f0e9; // Soft Beige/Sage tint (Cards)
+$primary-color: #2e5c3e; // Deep Forest Green
+$secondary-color: #8c7b75; // Earthy Brown/Grey (Secondary text)
+$accent-color: #d97706; // Amber/Ochre (unchanged mostly, matches earth tones)
 
-$text-primary: #ffffff;
-$text-secondary: #94a3b8; // Slate 400
+$text-primary: #2b2b2b; // Dark Charcoal/Brown (High contrast on light bg)
+$text-secondary: #5d5c61; // Dark Grey/Brown
+$border-color-subtle: rgba(0, 0, 0, 0.1); // Subtle dark border for light theme
 
 $font-family: 'Inter', system-ui, -apple-system, sans-serif;
 

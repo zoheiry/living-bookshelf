@@ -10,7 +10,7 @@
     background-color: $surface-color; // Fallback
     position: relative;
     display: inline-block;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid $border-color-subtle;
 
     aspect-ratio: 1 / 1; // Maintain square aspect ratio
 

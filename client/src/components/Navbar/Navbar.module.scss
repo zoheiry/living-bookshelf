@@ -119,27 +119,16 @@
             background-color: $surface-color;
             border-radius: $border-radius;
             box-shadow: $box-shadow;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            min-width: 150px;
-            z-index: 100;
-            overflow: hidden;
+            border: 1px solid $border-color-subtle;
+            padding: $spacing-unit;
+            text-align: right;
 
             a,
             button {
-                display: block;
-                width: 100%;
-                padding: $spacing-unit $spacing-unit*2;
-                color: $text-secondary;
-                text-align: left;
-                background: none;
-                border: none;
-                font-size: 0.9rem;
-                cursor: pointer;
-                text-decoration: none;
-                transition: background-color 0.2s, color 0.2s;
 
+                // ...
                 &:hover {
-                    background-color: rgba(255, 255, 255, 0.05);
+                    background-color: rgba(0, 0, 0, 0.05);
                     color: $text-primary;
                 }
             }

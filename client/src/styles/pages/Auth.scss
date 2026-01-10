@@ -31,7 +31,7 @@
             input {
                 padding: $spacing-unit*1.5;
                 border-radius: $border-radius;
-                border: 1px solid rgba(255, 255, 255, 0.1);
+                border: 1px solid $border-color-subtle;
                 background-color: darken($background-color, 3%);
                 color: $text-primary;
                 font-family: inherit;

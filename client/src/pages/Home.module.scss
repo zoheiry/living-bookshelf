@@ -1,0 +1,31 @@
+@import '../styles/variables';
+
+.searchContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-unit * 4;
+
+    .searchInput {
+        padding: $spacing-unit * 1.5 $spacing-unit * 2;
+        border-radius: 8px;
+        border: 1px solid $border-color-subtle;
+        width: 100%;
+        max-width: 400px;
+        background-color: $surface-color;
+        color: $text-primary;
+        font-family: inherit;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+        }
+
+        &::placeholder {
+            color: $text-secondary;
+            opacity: 0.7;
+        }
+    }
+}
