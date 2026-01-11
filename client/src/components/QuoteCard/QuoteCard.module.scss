@@ -59,6 +59,7 @@
                 // Collapsed state (default)
                 &.collapsed {
                     display: -webkit-box;
+                    line-clamp: 3;
                     -webkit-line-clamp: 3;
                     -webkit-box-orient: vertical;
                     overflow: hidden;
@@ -68,6 +69,7 @@
                 // Expanded state
                 &.expanded {
                     display: block;
+                    line-clamp: unset;
                     -webkit-line-clamp: unset;
                     overflow: visible;
                 }

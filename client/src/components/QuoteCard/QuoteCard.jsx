@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { excerptApi } from '../../api';
 import styles from './QuoteCard.module.scss';
 
 export default function QuoteCard({ books = [] }) {
@@ -51,15 +52,7 @@ export default function QuoteCard({ books = [] }) {
                 // Pick random book
                 const randomBook = books[Math.floor(Math.random() * books.length)];
 
-                const res = await fetch(`http://localhost:5001/api/excerpt/${encodeURIComponent(randomBook.EntityId)}`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                if (!res.ok) throw new Error('Failed to fetch excerpt');
-
-                const data = await res.json();
+                const data = await excerptApi.generate(randomBook.EntityId, token);
 
                 const newQuote = {
                     text: data.excerpt,

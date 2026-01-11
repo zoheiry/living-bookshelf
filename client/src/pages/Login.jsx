@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { authApi } from '../api';
 import '../styles/pages/Auth.scss';
 
 export default function Login() {
@@ -19,18 +20,7 @@ export default function Login() {
         setError('');
 
         try {
-            const res = await fetch('http://localhost:5001/api/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            });
-
-            const data = await res.json();
-
-            if (!res.ok) {
-                throw new Error(data.error || 'Login failed');
-            }
-
+            const data = await authApi.login({ email, password });
             login(data.token, { email: data.userId });
             navigate('/');
         } catch (err) {

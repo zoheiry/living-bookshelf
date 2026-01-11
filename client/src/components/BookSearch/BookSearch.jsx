@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { booksApi } from '../../api';
 import styles from './BookSearch.module.scss';
 
 export default function BookSearch({ onBookAdded, onClose }) {
@@ -44,18 +45,9 @@ export default function BookSearch({ onBookAdded, onClose }) {
         const bookToSave = { ...selectedBook, dateRead };
 
         try {
-            const res = await fetch('http://localhost:5001/api/books', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // Add Header
-                },
-                body: JSON.stringify(bookToSave)
-            });
-            if (res.ok) {
-                onBookAdded();
-                onClose();
-            }
+            await booksApi.create(bookToSave, token);
+            onBookAdded();
+            onClose();
         } catch (err) {
             console.error("Failed to save book", err);
         }

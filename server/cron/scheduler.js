@@ -32,9 +32,8 @@ async function processUserEmail(userId) {
 }
 
 const startScheduler = () => {
-    // Run every day at 8 AM
-    // Run every minute to check for scheduled emails
-    cron.schedule('* * * * *', async () => {
+    // Run every 10 minutes to check for scheduled emails
+    cron.schedule('*/10 * * * *', async () => {
         const now = new Date();
         const currentDay = now.getDay(); // 0 (Sun) - 6 (Sat)
         // Format time as HH:MM

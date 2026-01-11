@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { settingsApi } from '../api';
 
 const AuthContext = createContext();
 
@@ -11,10 +12,7 @@ export function AuthProvider({ children }) {
     const refreshProfile = async (currentToken = token) => {
         if (!currentToken) return;
         try {
-            const res = await fetch('http://localhost:5001/api/settings', {
-                headers: { 'Authorization': `Bearer ${currentToken}` }
-            });
-            const data = await res.json();
+            const data = await settingsApi.get(currentToken);
             const payload = JSON.parse(atob(currentToken.split('.')[1]));
 
             setUser({

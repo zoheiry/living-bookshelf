@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useBooks } from '../contexts/BooksContext';
 import { useAuth } from '../contexts/AuthContext';
+import { booksApi, excerptApi } from '../api';
 import '../styles/pages/BookDetails.scss';
 
 export default function BookDetails() {
@@ -33,13 +34,7 @@ export default function BookDetails() {
             setEditYear(foundBook.DateRead || '');
             setLoading(false);
         } else {
-            fetch(`http://localhost:5001/api/books/${encodeURIComponent(id)}`, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            })
-                .then(res => {
-                    if (!res.ok) throw new Error('Book not found');
-                    return res.json();
-                })
+            booksApi.getById(id, token)
                 .then(data => {
                     setBook(data);
                     setNotes(data.Notes || '');
@@ -55,21 +50,11 @@ export default function BookDetails() {
 
     const handleSaveYear = async () => {
         try {
-            const res = await fetch(`http://localhost:5001/api/books/${encodeURIComponent(id)}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({ dateRead: editYear })
-            });
-            if (res.ok) {
-                const updatedBook = await res.json();
-                setBook(updatedBook);
-                setEditYear(updatedBook.DateRead || editYear);
-                setIsEditingYear(false);
-                fetchBooks();
-            }
+            const updatedBook = await booksApi.update(id, { dateRead: editYear }, token);
+            setBook(updatedBook);
+            setEditYear(updatedBook.DateRead || editYear);
+            setIsEditingYear(false);
+            fetchBooks();
         } catch (err) {
             console.error("Failed to save year", err);
         }
@@ -77,21 +62,11 @@ export default function BookDetails() {
 
     const handleSaveNotes = async () => {
         try {
-            const res = await fetch(`http://localhost:5001/api/books/${encodeURIComponent(id)}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({ notes })
-            });
-            if (res.ok) {
-                const updatedBook = await res.json();
-                setBook(updatedBook);
-                setNotes(updatedBook.Notes || '');
-                setIsEditingNotes(false);
-                fetchBooks();
-            }
+            const updatedBook = await booksApi.update(id, { notes }, token);
+            setBook(updatedBook);
+            setNotes(updatedBook.Notes || '');
+            setIsEditingNotes(false);
+            fetchBooks();
         } catch (err) {
             console.error("Failed to save notes", err);
         }
@@ -101,14 +76,9 @@ export default function BookDetails() {
         if (!confirm("Are you sure you want to delete this book? This cannot be undone.")) return;
 
         try {
-            const res = await fetch(`http://localhost:5001/api/books/${encodeURIComponent(id)}`, {
-                method: 'DELETE',
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (res.ok) {
-                fetchBooks();
-                navigate('/');
-            }
+            await booksApi.delete(id, token);
+            fetchBooks();
+            navigate('/');
         } catch (err) {
             console.error("Failed to delete book", err);
         }
@@ -117,10 +87,7 @@ export default function BookDetails() {
     const handleGenerateExcerpt = async () => {
         setGenerating(true);
         try {
-            const res = await fetch(`http://localhost:5001/api/excerpt/${encodeURIComponent(id)}`, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            const data = await res.json();
+            const data = await excerptApi.generate(id, token);
             if (data.excerpt) {
                 setExcerpt(data.excerpt);
             }

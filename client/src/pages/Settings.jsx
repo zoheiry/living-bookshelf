@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { settingsApi } from '../api';
 import '../styles/pages/Settings.scss';
 import AvatarSelector from '../components/Avatar/AvatarSelector';
 
@@ -15,10 +16,7 @@ export default function Settings() {
     useEffect(() => {
         if (!token) return;
 
-        fetch('http://localhost:5001/api/settings', {
-            headers: { 'Authorization': `Bearer ${token}` }
-        })
-            .then(res => res.json())
+        settingsApi.get(token)
             .then(data => {
                 if (data.EmailFrequency) setEmailFrequency(data.EmailFrequency);
                 if (data.EmailTime) setEmailTime(data.EmailTime);
@@ -37,26 +35,15 @@ export default function Settings() {
         setMessage('');
 
         try {
-            const res = await fetch('http://localhost:5001/api/settings', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    emailFrequency,
-                    emailTime,
-                    emailDay,
-                    avatarIndex
-                })
-            });
+            await settingsApi.update({
+                emailFrequency,
+                emailTime,
+                emailDay,
+                avatarIndex
+            }, token);
 
-            if (res.ok) {
-                setMessage('Settings saved successfully!');
-                await refreshProfile(); // Refresh context
-            } else {
-                setMessage('Failed to save settings.');
-            }
+            setMessage('Settings saved successfully!');
+            await refreshProfile(); // Refresh context
         } catch (err) {
             console.error(err);
             setMessage('Error saving settings.');

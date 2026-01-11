@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useBooks } from '../contexts/BooksContext';
 import { useAuth } from '../contexts/AuthContext';
+import { settingsApi } from '../api';
 import Hero from '../components/Hero/Hero';
 import QuoteCard from '../components/QuoteCard/QuoteCard';
 import BookList from '../components/BookList/BookList';
@@ -14,13 +15,7 @@ export default function Home() {
     const handleTestEmail = async () => {
         if (!confirm('Send test email now?')) return;
         try {
-            const res = await fetch('http://localhost:5001/api/settings/trigger-email', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            const data = await res.json();
+            const data = await settingsApi.triggerTestEmail(token);
             alert(data.message || 'Email triggered!');
         } catch (err) {
             console.error(err);

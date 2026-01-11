@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { useAuth } from './AuthContext';
+import { booksApi } from '../api';
 
 const BooksContext = createContext();
 
@@ -14,13 +15,7 @@ export function BooksProvider({ children }) {
 
         setLoading(true);
         try {
-            const res = await fetch('http://localhost:5001/api/books', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            if (!res.ok) throw new Error('Failed to fetch books');
-            const data = await res.json();
+            const data = await booksApi.getAll(token);
             setBooks(data);
         } catch (err) {
             setError(err.message);
