@@ -14,7 +14,7 @@ app.use(cors({
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Living Bookshelf API is running');
+    res.send('Living Library API is running');
 });
 
 // Import routes

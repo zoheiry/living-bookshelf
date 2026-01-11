@@ -1,4 +1,4 @@
-# Living Bookshelf
+# Living Library
 
 A personalized digital library to track your reading journey, discover insights from your books, and keep the wisdom alive.
 

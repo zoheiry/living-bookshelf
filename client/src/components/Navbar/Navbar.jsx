@@ -36,7 +36,7 @@ export default function Navbar({ onAddBook }) {
             <div className={`${styles.navbar} container`}>
                 <Link to="/" className={styles.brand}>
                     <img src="/assets/logo.png" alt="Logo" className={styles.logoImage} />
-                    <span className={styles.brandText}>Living Bookshelf</span>
+                    <span className={styles.brandText}>Living Library</span>
                 </Link>
 
                 <div className={styles.navActions}>

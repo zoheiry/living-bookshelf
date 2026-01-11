@@ -45,7 +45,7 @@ const sendEmail = async (to, subject, text) => {
 
     try {
         const info = await transporter.sendMail({
-            from: '"Living Bookshelf" <living-bookshelf@alizoh.com>', // sender address
+            from: '"Living Library" <living-library@alizoh.com>', // sender address
             to: to, // list of receivers
             subject: subject, // Subject line
             text: text, // plain text body
