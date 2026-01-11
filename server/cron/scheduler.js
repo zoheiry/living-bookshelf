@@ -77,8 +77,10 @@ const startScheduler = () => {
                 // Calculate difference considering midnight wrap-around
                 const diff = (nowTotalMinutes - prefTotalMinutes + 1440) % 1440;
 
+                console.log('Scheduler: Checking mail settings for: ', user.UserId);
                 // If scheduled time was within the last 10 minutes (0 to 9)
                 if (diff >= 0 && diff < 10) {
+                    console.log('Scheduler: Sending mail to: ', user.UserId);
                     if (frequency === 'daily') {
                         await processUserEmail(user.UserId);
                     } else if (frequency === 'weekly' && currentDay === preferredDay) {
