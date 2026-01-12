@@ -14,7 +14,7 @@ export default function Avatar({ index = 0, size = 'medium' }) {
         const row = Math.floor(safeIndex / 10);
 
         const x = col * 10.63 + 2.1;
-        const y = row * 10.662 + 2.5;
+        const y = row * 10.63 + 2.5;
 
         return {
             backgroundPosition: `${x}% ${y}%`

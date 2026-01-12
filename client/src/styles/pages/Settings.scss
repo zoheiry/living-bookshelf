@@ -9,6 +9,10 @@
     box-shadow: $box-shadow;
     color: $text-primary;
 
+    @include mobile {
+        padding: $spacing-unit*2;
+    }
+
     h1 {
         margin-top: 0;
     }

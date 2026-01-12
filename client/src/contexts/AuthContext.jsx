@@ -40,6 +40,7 @@ export function AuthProvider({ children }) {
     const login = (newToken, newUser) => {
         localStorage.setItem('token', newToken);
         setToken(newToken);
+        setLoading(true);
         // refreshProfile will run via useEffect
     };
 

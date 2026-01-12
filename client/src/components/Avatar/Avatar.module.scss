@@ -34,7 +34,7 @@
 
 .selectorGrid {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 8px;
     max-height: 400px;
     overflow-y: auto;
@@ -42,9 +42,14 @@
     border-radius: 8px;
     margin-top: 10px;
 
+    @include mobile {
+        grid-template-columns: repeat(4, 1fr);
+        max-height: 250px;
+    }
+
     .selectorItem {
-        width: 64px;
-        height: 64px;
+        width: 85px;
+        height: 85px;
         cursor: pointer;
         padding: 4px;
         border-radius: 50%;
@@ -53,6 +58,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        @include mobile {
+            width: 64px;
+            height: 64px;
+        }
 
         &.selected {
             border-color: $primary-color;
