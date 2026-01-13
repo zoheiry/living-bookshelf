@@ -35,6 +35,15 @@ export function AuthProvider({ children }) {
             setLoading(false);
         };
         initAuth();
+
+        const handleUnauthorized = () => {
+            logout();
+        };
+
+        window.addEventListener('auth:unauthorized', handleUnauthorized);
+        return () => {
+            window.removeEventListener('auth:unauthorized', handleUnauthorized);
+        };
     }, [token]);
 
     const login = (newToken, newUser) => {

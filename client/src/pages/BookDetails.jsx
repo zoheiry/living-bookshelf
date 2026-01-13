@@ -114,9 +114,9 @@ export default function BookDetails() {
                 </div>
 
                 <div className="info-section">
-                    <div className="title-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <div className="title-row">
                         <h1>{book.Title}</h1>
-                        <button onClick={handleDeleteBook} className="delete-btn" style={{ background: 'transparent', color: '#ef4444', border: '1px solid #ef4444', padding: '4px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem' }}>Delete Book</button>
+                        <button onClick={handleDeleteBook} className="delete-btn">Delete Book</button>
                     </div>
 
                     <h3>{book.Author}</h3>
@@ -134,9 +134,9 @@ export default function BookDetails() {
                             <button onClick={() => { setIsEditingYear(false); setEditYear(book.DateRead || ''); }} className="cancel-btn">Cancel</button>
                         </div>
                     ) : (
-                        <div className="date-row" style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '20px' }}>
-                            <p className="date" style={{ marginBottom: 0 }}>Finished in: {book.DateRead || 'Unknown'}</p>
-                            <button onClick={() => setIsEditingYear(true)} className="edit-btn" style={{ color: '#8b5cf6', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontSize: '0.9rem' }}>Edit Year</button>
+                        <div className="date-row">
+                            <p className="date">Finished in: {book.DateRead || 'Unknown'}</p>
+                            <button onClick={() => setIsEditingYear(true)} className="edit-year-btn">Edit Year</button>
                         </div>
                     )}
 
@@ -154,7 +154,7 @@ export default function BookDetails() {
                                     value={notes}
                                     onChange={e => setNotes(e.target.value)}
                                     placeholder="Add your thoughts..."
-                                    style={{ width: '100%', minHeight: '150px', padding: '10px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: 'white', marginBottom: '10px' }}
+                                    className="notes-input"
                                 />
                                 <div className="actions">
                                     <button onClick={handleSaveNotes} className="save-btn">Save Notes</button>
@@ -163,7 +163,7 @@ export default function BookDetails() {
                             </div>
                         ) : (
                             <div className="notes-display">
-                                {notes || <em style={{ color: '#666' }}>No notes yet...</em>}
+                                {notes || <em className="empty-notes">No notes yet...</em>}
                             </div>
                         )}
                     </div>

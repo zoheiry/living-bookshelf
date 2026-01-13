@@ -63,7 +63,7 @@ export default function Settings() {
             <form onSubmit={handleSave}>
                 <div className="form-group">
                     <label>Choose Your Avatar</label>
-                    <div style={{ marginBottom: '10px' }}>
+                    <div className="avatar-wrapper">
                         <AvatarSelector
                             selectedIndex={avatarIndex}
                             onSelect={setAvatarIndex}

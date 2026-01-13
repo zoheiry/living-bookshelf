@@ -32,6 +32,14 @@
             color: $text-primary;
         }
 
+        .auth-error {
+            color: #ef4444;
+            margin-bottom: 15px;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
         form {
             display: flex;
             flex-direction: column;

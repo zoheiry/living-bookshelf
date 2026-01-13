@@ -29,3 +29,14 @@
         }
     }
 }
+
+.filtersWrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.emptyState {
+    text-align: center;
+    padding: 40px;
+    color: $text-secondary;
+}

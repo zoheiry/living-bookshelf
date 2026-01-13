@@ -30,6 +30,20 @@ const request = async (endpoint, options = {}) => {
 
     // Initial error handling
     if (!response.ok) {
+        if (response.status === 401 || response.status === 400) {
+            // For 400, strictly we should check if it's "Invalid token", but for auth purposes usually safe if we are strict. 
+            // However, 400 can be other validation errors. 
+            // Let's check the error message if possible or just stick to 401?
+            // The user specifically asked: "Shouldn't it be removed on the first 400 request that shows the token expired?"
+            // Server middleware returns 400 for jwt verify error.
+            const data = await response.clone().json().catch(() => ({}));
+            const errorMsg = data.error || data.message || '';
+            if (response.status === 401 || (response.status === 400 && errorMsg.toLowerCase().includes('token'))) {
+                console.warn('Authentication error detected, dispatching logout event.', errorMsg);
+                window.dispatchEvent(new CustomEvent('auth:unauthorized'));
+            }
+        }
+
         const errorData = await response.json().catch(() => ({}));
         throw new Error(errorData.error || errorData.message || `Request failed: ${response.statusText}`);
     }

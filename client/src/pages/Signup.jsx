@@ -38,7 +38,7 @@ export default function Signup() {
             <div className="auth-container">
                 <img src="/assets/logo.png" alt="Living Library Logo" className="auth-logo" />
                 <h1>Sign Up</h1>
-                {error && <div style={{ color: '#ef4444', marginBottom: '15px', background: 'rgba(239, 68, 68, 0.1)', padding: '10px', borderRadius: '8px' }}>{error}</div>}
+                {error && <div className="auth-error">{error}</div>}
                 <form onSubmit={handleSubmit}>
                     <input
                         type="email"

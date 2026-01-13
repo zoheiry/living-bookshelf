@@ -68,6 +68,45 @@
             color: darken($text-secondary, 10%);
             margin-bottom: $spacing-unit*4;
             margin-top: 0;
+            margin-bottom: 0; // Overridden from inline style removal
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            .delete-btn {
+                background: transparent;
+                color: $error-color; // assuming error-color exists, or #ef4444
+                border: 1px solid $error-color;
+                padding: 4px 8px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.8rem;
+                transition: all 0.2s;
+
+                &:hover {
+                    background: rgba($error-color, 0.1);
+                }
+            }
+        }
+
+        .date-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+
+            .edit-year-btn {
+                color: $primary-color;
+                text-decoration: underline;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                font-size: 0.9rem;
+            }
         }
 
         .edit-year-section {
@@ -83,6 +122,7 @@
 
             input[type=number] {
                 -moz-appearance: textfield;
+                appearance: textfield;
                 padding: 6px;
                 border-radius: 4px;
                 border: 1px solid $border-color-subtle;

@@ -47,13 +47,13 @@ export default function Home() {
                     className={styles.searchInput}
                 />
 
-                <div style={{ display: 'flex', gap: '10px' }}>
+                <div className={styles.filtersWrapper}>
                     {/* Add Filter buttons here later if needed */}
                 </div>
             </div>
 
             {books.length === 0 ? (
-                <div style={{ textAlign: 'center', padding: '40px', color: '#94a3b8' }}>
+                <div className={styles.emptyState}>
                     <p>No books added yet. Click "Add New Book" to get started!</p>
                 </div>
             ) : filteredBooks.length === 0 ? (

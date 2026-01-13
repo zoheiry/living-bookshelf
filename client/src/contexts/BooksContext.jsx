@@ -14,9 +14,10 @@ export function BooksProvider({ children }) {
         if (!token) return;
 
         setLoading(true);
+        setError(null); // Clear previous errors
         try {
             const data = await booksApi.getAll(token);
-            setBooks(data);
+            setBooks(data); // Assuming success means no error
         } catch (err) {
             setError(err.message);
         } finally {

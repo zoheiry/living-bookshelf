@@ -85,7 +85,7 @@ export default function QuoteCard({ books = [] }) {
 
     if (loading) {
         return (
-            <div className={styles.quoteCard} style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <div className={`${styles.quoteCard} ${styles.loading}`}>
                 <p>Finding a gem for you...</p>
             </div>
         );

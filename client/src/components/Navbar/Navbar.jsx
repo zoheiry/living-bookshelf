@@ -44,7 +44,7 @@ export default function Navbar({ onAddBook }) {
                         <span className={styles.btnText}>Add Book</span>
                     </button>
 
-                    <div style={{ position: 'relative' }} ref={dropdownRef}>
+                    <div className={styles.userMenuWrapper} ref={dropdownRef}>
                         <div
                             className={styles.userAvatarWrapper}
                             title="User Menu"

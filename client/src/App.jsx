@@ -27,7 +27,7 @@ function App() {
     <div className="app">
       {user && <Navbar onAddBook={() => setIsModalOpen(true)} />}
 
-      <main className="container" style={{ marginTop: '20px' }}>
+      <main className="container main-content">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
